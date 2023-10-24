@@ -1,0 +1,266 @@
+
+#include <iostream>
+using namespace std ;
+void afficherNombreAppels() {
+    static int n = 0;
+  n++ ;
+   cout << "appel numero " << n<< endl;
+}
+int main() { int n ;
+     while ( n<3) { 
+    afficherNombreAppels();
+    n++ ;
+}
+   return 0;}
+exercice 2 :
+#include <iostream>
+using namespace std ;
+bool MultipleDe2(int nb) {
+    return (nb % 2 == 0);
+}
+bool MultipleDe3(int nb) {
+    return ( nb % 3 == 0);
+}
+int main() {
+    int nb;
+    cout << "Donnez un entier : ";
+    cin >> nb;
+    if (MultipleDe2(nb)) { 
+        cout << " pair" << endl;
+    }
+  if (MultipleDe3(nb))  { 
+       cout << "multiple de 3" << endl;
+    }
+  if (MultipleDe2(nb) && MultipleDe3(nb)) {
+       cout << " divisible par 6" << endl ;
+}
+return 0;
+}
+exercice 3 :
+#include <iostream>
+using namespace std;
+int main() {
+   int n= 2;
+    int t[2];
+ for (int i = 0; i <2; i++) {
+    cout << "Entrez un nombre : ";
+       cin >> t[i];
+    }
+  int max ;
+  max= t[0] ;
+  int min = t[0];
+   {
+      if (t[i] > max) 
+        max = t[i];
+       if   (t[i]<min) 
+  min = t[i];   }
+    cout << "Le plus grand nombre est : " << max << endl;
+   cout << "Le plus petit nombre est : " << min << endl;
+      return 0;
+}
+exercice 4:
+#include <iostream>
+using namespace std;
+int main() {
+    int taille;
+   cout << "Entrez la taille du tableau : ";
+   cin >> taille;
+    int* t = int[taille];
+    for (int i = 0; i < taille; i++) {
+       cout << "Entrez un nombre entier : ";
+        cin >> t[i];
+    }
+    int* carres = new int[taille];
+    for (int i = 0; i < taille; i++) {
+        carres[i] = t[i] * t[i];
+    }
+   cout << "Les carres des nombres sont : ";
+    for (int i = 0; i < taille; i++) {
+       cout << carres[i] << " " << endl;
+    }
+     delete[] t;
+   delete[] carres;
+   return 0;
+}
+exercice 5 :
+#include <iostream>
+using namespace std;
+int main() {
+    int a ; 
+    int& ref_a = a; 
+    int* p_a = &a;
+   cout << "Variable a : " << a << endl;
+   cout << "Adresse de a : " << &a << endl;
+   cout << "Référence ref_a : " << ref_a << endl;
+   cout << "Adresse de ref_a : " << &ref_a << endl;
+  cout << "Pointeur p_a : " << *p_a << endl;
+  cout << "Adresse de p_a : " << p_a << endl;
+  return 0;
+}
+exercice 6:
+#include <iostream>
+using namespace std ;
+void incrementer(int* var) {
+    (*var)++; 
+}
+void permuter(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void incrementerParReference(int& var) {
+    var++; 
+}
+void permuterParReference(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+int main() {
+    int num1 ;
+    int num2 ;
+   cout << "Avant appeler les fonctions : num1 = " << num1 << ", num2 = " << num2 << endl;
+    incrementer(&num1);
+    permuter(&num1, &num2);
+cout << "Apres les appels de fonctions : num1 = " << num1 << ", num2 = " << num2 << endl;
+    num1 ;
+    num2 ;
+    incrementerParReference(num1);
+    permuterParReference(num1, num2);
+   cout << "Apres les appels de fonctions : num1 = " << num1 << ", num2 = " << num2 << endl;
+   return 0;
+}
+exercice 7:
+#include<iostream>
+using namespace std;
+int main()
+{
+int N=10,a[N],i,nb,tmp;
+for(i=0;i<N;i++)
+{cout<<" entier numero "<<i<<" : ";
+cin>>a[i];}
+while(nb)	{
+ nb=0;
+	for(i=1;i<N;i++)
+		if(a[i]>a[i+1])
+			{
+	tmp=a[i];
+	a[i]=a[i+1];
+	a[i+1]=tmp;
+	nb++;
+	}
+	}
+cout<<" TABLEAU TRIE  :"<<endl;
+for(i=0;i<N;i++)cout<<"a["<<i<<"]="<<a[i]<<endl;
+return 0;
+}
+exercice 11:
+#include <iostream>
+#include <cmath>
+using namespace std ;
+class Vecteur3D {
+private:
+    float x;
+    float y;
+    float z;
+public:
+    Vecteur3D(float x = 0.0, float y = 0.0, float z = 0.0) : x(x), y(y), z(z) {}
+    void afficher() {
+       cout << "(" << x << ", " << y << ", " << z << ")" << endl;
+    }
+    Vecteur3D somme(const Vecteur3D& v) {
+        return Vecteur3D(x + v.x, y + v.y, z + v.z);
+    }
+    float produitScalaire(const Vecteur3D& v) {
+        return x * v.x + y * v.y + z * v.z;
+    }
+    float norme() {
+        return sqrt(x * x + y * y + z * z);
+    }
+    bool coincide(const Vecteur3D& v) {
+        return x == v.x && y == v.y && z == v.z;
+    }
+};
+int main() {
+    Vecteur3D v1(1.0, 2.0, 1.0);
+    Vecteur3D v2(1.0, 2.0, 1.0);
+   cout << "Vecteur v1 : ";
+    v1.afficher();
+  cout << "Vecteur v2 : ";
+    v2.afficher();
+    Vecteur3D v3 = v1.somme(v2);
+  cout << "Somme de v1 et v2 : ";
+    v3.afficher();
+    float dotProduct = v1.produitScalaire(v2);
+   cout << "Produit scalaire de v1 et v2 : " << dotProduct << endl;
+    if (v1.coincide(v2)) {
+cout << "v1 et v2 les memes composantes." << endl;
+    } else {
+        cout << "v1 et v2 pas  memes composantes" <<endl;
+    }
+   cout << "Norme de v1 : " << v1.norme() << std::endl;
+    return 0;
+}
+exercice 12:
+#include <iostream>
+using namespace std ;
+static int callCount = 0; 
+void call() {
+    callCount++;
+}
+int main() { int n ;
+    for (int i = 0; i < n; i++) {
+       call();
+    }
+ cout << " fonction 'call' ate appelee " << callCount << " fois." << endl;
+    return 0;
+}
+exercice 13:
+#include <iostream>
+#include "Point.h"
+using namespace std ;
+int main() {
+    float x, y;
+   cout << "Entrez la coordonnee x du point : ";
+    cin >> x;
+   cout << "Entrez la coordonnee y du point : ";
+   cin >> y;
+    Point p(x, y); 
+cout << "Point initial : ";
+    p.affiche();
+    float deltaX, deltaY;
+    cout << "Entrez le deplacement en x : ";
+   cin >> deltaX;
+   out << "Entrez le deplacement en y : ";
+   cin >> deltay;
+cout << "Point deplace : ";
+    p.affiche();
+    return 0;
+}
+exercice 15 :
+#include <iostream>
+using namespace std
+class Fichier
+ {
+private:
+  vector<char> donnees; 
+public:
+    Fichier(int size) : donnees(size) {}
+    void Remplit() {
+        for (int i = 0; i < donnees.size(); i++) {
+            donnees[i] = 'A' + i % 26; 
+        }
+    }
+    void Affiche() {
+        for (char c : donnees) {
+         cout << c;
+        }
+        cout << endl;
+    }
+};
+int main() {
+    Fichier monFichier(50); 
+    monFichier.Remplit();
+    monFichier.Affiche();
+    return 0;
+}
